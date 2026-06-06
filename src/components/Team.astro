@@ -1,0 +1,99 @@
+---
+import team from "~/data/team.json";
+import Icon from "./Icon.astro";
+---
+
+<section class="section" id="team">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Team</span>
+      <h2 class="section-title">The people behind the Academy</h2>
+      <p class="section-intro">
+        A small, careful team of coaches and facilitators — chosen as much for warmth
+        and lived experience as for credentials.
+      </p>
+    </div>
+
+    <div class="grid grid--3 team-grid">
+      {team.map((m, i) => (
+        <article class="card team-card reveal" style={`animation-delay:${i * 60}ms`}>
+          <div class="team-card__photo">
+            <img
+              src={m.image}
+              alt={`Portrait of ${m.name}`}
+              width="200" height="200" loading="lazy" decoding="async"
+            />
+          </div>
+          <h3>{m.name}</h3>
+          <p class="team-card__role">{m.role}</p>
+          <p class="team-card__bio">{m.bio}</p>
+          {(m.linkedin || m.instagram) && (
+            <div class="team-card__socials" aria-label={`Social profiles for ${m.name}`}>
+              {m.linkedin && (
+                <a href={m.linkedin} aria-label={`${m.name} on LinkedIn`} target="_blank" rel="noopener">
+                  <Icon name="linkedin" size={18} />
+                </a>
+              )}
+              {m.instagram && (
+                <a href={m.instagram} aria-label={`${m.name} on Instagram`} target="_blank" rel="noopener">
+                  <Icon name="instagram" size={18} />
+                </a>
+              )}
+            </div>
+          )}
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .team-grid { gap: 1.5rem; }
+  .team-card { text-align: center; align-items: center; }
+  .team-card__photo {
+    width: 132px; height: 132px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 1rem;
+    background: linear-gradient(135deg, var(--color-accent), var(--color-coral));
+    padding: 4px;
+    box-shadow: var(--shadow-sm);
+  }
+  .team-card__photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background: var(--color-cream-2);
+  }
+  .team-card h3 { font-size: 1.15rem; margin-bottom: .15rem; }
+  .team-card__role {
+    color: var(--color-accent-700);
+    font-weight: 600;
+    font-size: .9rem;
+    margin-bottom: .65rem;
+    font-family: var(--font-heading);
+  }
+  .team-card__bio {
+    color: var(--color-text-muted);
+    font-size: .92rem;
+    margin: 0;
+  }
+  .team-card__socials {
+    margin-top: 1rem;
+    display: flex;
+    gap: .75rem;
+    justify-content: center;
+  }
+  .team-card__socials a {
+    width: 34px; height: 34px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(15, 76, 92, 0.08);
+    color: var(--color-primary);
+    transition: background .2s var(--ease), color .2s var(--ease);
+  }
+  .team-card__socials a:hover { background: var(--color-primary); color: var(--color-cream); }
+</style>

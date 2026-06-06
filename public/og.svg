@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" x2="1" y1="0" y2="1">
+      <stop offset="0%" stop-color="#0F4C5C"/>
+      <stop offset="100%" stop-color="#0a3946"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" x2="1" y1="0" y2="0">
+      <stop offset="0%" stop-color="#E9B44C"/>
+      <stop offset="100%" stop-color="#E76F51"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <circle cx="1080" cy="-40" r="320" fill="#E9B44C" opacity=".18"/>
+  <circle cx="-40" cy="640" r="260" fill="#E76F51" opacity=".14"/>
+  <g transform="translate(80, 110)">
+    <rect width="120" height="6" rx="3" fill="url(#accent)"/>
+    <text x="0" y="58" font-family="Poppins, Segoe UI, sans-serif" font-size="28" font-weight="600" fill="#E9B44C" letter-spacing="6">PLEASANT PERSONALITY ACADEMY</text>
+    <text x="0" y="190" font-family="Poppins, Segoe UI, sans-serif" font-size="84" font-weight="800" fill="#FFFAF3">Become the most</text>
+    <text x="0" y="290" font-family="Poppins, Segoe UI, sans-serif" font-size="84" font-weight="800" fill="#FFFAF3">
+      <tspan fill="#E9B44C">confident</tspan>, pleasant
+    </text>
+    <text x="0" y="390" font-family="Poppins, Segoe UI, sans-serif" font-size="84" font-weight="800" fill="#FFFAF3">version of yourself.</text>
+    <text x="0" y="470" font-family="Inter, Segoe UI, sans-serif" font-size="28" font-weight="500" fill="#FFFAF3" opacity=".82">Personality development &amp; coaching with Manisha Yadav</text>
+  </g>
+</svg>

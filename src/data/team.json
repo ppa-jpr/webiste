@@ -1,0 +1,25 @@
+[
+  {
+    "id": "manisha",
+    "name": "Manisha Yadav",
+    "role": "Founder & Head Coach",
+    "bio": "Pleasant Personality Academy was founded by Manisha Manoj Yadav, a seasoned personality coach with over 10 years of experience in personal development and professional skills training. As an Army wife and a leader in her field, Manisha has dedicated her career to empowering individuals to realize their true potential. She not only works with students but also personally trains the academy’s trainers to ensure the highest quality of coaching. In addition to this, Academy offers career counseling services too which include personalized assessments and tests to help individuals find their best career path. Even one consultation with her provides tailored guidance and practical remedies to overcome any challenges, making her coaching both holistic and transformative.",
+    "image": "/images/team/manisha.svg",
+    "linkedin": "https://in.linkedin.com/in/manisha-yadav-3aab0948",
+    "instagram": "https://www.instagram.com/pleasantpersonalityacademy/"
+  },
+  {
+    "id": "vandana",
+    "name": "Vandana Yadav",
+    "role": "Non-Executive Director",
+    "bio": "Vandana, as a Non-Executive Director and seasoned Head of Department (HOD) training, brings over two decades of rich experience in the hospitality and corporate world. Her expertise lies in leadership development, team management, and customer service excellence.she has guided numerous professionals to excel in their roles, blending corporate efficiency with the personalized touch of hospitality. Her strategic approach enhances both individual growth and organizational success.",
+    "image": "/images/team/coach-2.svg"
+  },
+  {
+    "id": "raja-ram",
+    "name": "Raja Ram",
+    "role": "CEO",
+    "bio": "Shri Raja Ram Yadav, the CEO of Pleasant Personality Academy, brings a unique blend of discipline and strategic leadership from his military experience . What is still instilled in him is a strong sense of integrity, resilience, and leadership, which he now channels into building the academy's vision. As an advocate, his understanding of structure and ethics further strengthens his approach to personal development and professional training. Under his guidance, the academy thrives as a center for grooming individuals with confidence, discipline, and the skills needed to succeed in today's competitive world.",
+    "image": "/images/team/coach-3.svg"
+  }
+]

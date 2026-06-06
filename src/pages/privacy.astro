@@ -1,0 +1,135 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Header from "~/components/Header.astro";
+import Footer from "~/components/Footer.astro";
+import site from "~/data/site.json";
+
+const title = `Privacy Policy — ${site.brand}`;
+const description = "How Pleasant Personality Academy collects, uses and protects your information.";
+const lastUpdated = "May 31, 2026";
+---
+
+<BaseLayout title={title} description={description} path="/privacy">
+  <Header />
+  <main id="main" class="privacy">
+    <div class="container privacy__inner">
+      <span class="section-eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p class="privacy__meta">Last updated: {lastUpdated}</p>
+
+      <p>
+        Pleasant Personality Academy ("we", "us", "our") respects your privacy. This page
+        explains what we collect when you visit this website or submit our enquiry form,
+        why we collect it, and what choices you have. It is written in line with India's
+        Digital Personal Data Protection Act, 2023 (DPDP Act).
+      </p>
+
+      <h2>What we collect</h2>
+      <p>When you submit the enquiry form, we collect the information you choose to share:</p>
+      <ul>
+        <li>Your name</li>
+        <li>Your email address</li>
+        <li>Your phone or WhatsApp number (optional)</li>
+        <li>The service you're interested in</li>
+        <li>The contents of your message</li>
+      </ul>
+      <p>
+        We may also receive basic, non-identifying technical information from your browser
+        (such as device type and approximate location) via our hosting provider and any
+        analytics tool we have configured.
+      </p>
+
+      <h2>Why we collect it</h2>
+      <ul>
+        <li>To respond to your enquiry and arrange coaching, workshops or training.</li>
+        <li>To send you information about programs you've asked about.</li>
+        <li>To improve our website and the way we serve our learners.</li>
+      </ul>
+      <p>
+        We do <strong>not</strong> sell your personal data, and we do not share it with
+        unrelated third parties for marketing.
+      </p>
+
+      <h2>How long we keep it</h2>
+      <p>
+        We keep enquiry data for as long as needed to support you, and then for a short
+        period afterwards for our records. If you'd like us to delete your information
+        sooner, just write to us — see "Your rights" below.
+      </p>
+
+      <h2>Third-party services</h2>
+      <p>
+        Our enquiry form is delivered through a form-handling service that emails
+        submissions to us. We may also use an analytics tool to understand how visitors
+        use the site. These providers process your data on our behalf under their own
+        privacy policies. We pick providers we trust to handle data responsibly.
+      </p>
+
+      <h2>Your rights</h2>
+      <p>You have the right to:</p>
+      <ul>
+        <li>Ask what personal data we hold about you.</li>
+        <li>Ask us to correct anything that is wrong.</li>
+        <li>Ask us to delete your data.</li>
+        <li>Withdraw your consent at any time.</li>
+      </ul>
+      <p>
+        To exercise any of these rights, email
+        <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        This site does not use cookies for advertising. If we add analytics in future, we
+        will update this notice and, where required, ask for your consent.
+      </p>
+
+      <h2>Children</h2>
+      <p>
+        We do not knowingly collect personal data from children under 18 without parental
+        or guardian consent. If you believe a child has shared data with us, please write
+        in and we will delete it.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        If we update this policy, we will change the "last updated" date at the top.
+        Material changes will be highlighted on this page.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about your privacy or this policy? Email
+        <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>.
+      </p>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>
+
+<style>
+  .privacy {
+    padding-block: clamp(3rem, 6vw, 5rem);
+    background: var(--color-cream);
+  }
+  .privacy__inner {
+    max-width: 760px;
+  }
+  .privacy h1 { margin-bottom: .25rem; }
+  .privacy__meta {
+    color: var(--color-text-muted);
+    font-size: .9rem;
+    margin-bottom: 2rem;
+  }
+  .privacy h2 {
+    margin-top: 2.25rem;
+    margin-bottom: .75rem;
+    font-size: 1.35rem;
+  }
+  .privacy p { margin-bottom: 1rem; }
+  .privacy ul {
+    padding-left: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  .privacy li { margin-bottom: .35rem; }
+</style>

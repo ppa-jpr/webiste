@@ -1,0 +1,142 @@
+---
+import site from "~/data/site.json";
+import Icon from "./Icon.astro";
+
+const year = new Date().getFullYear();
+
+const links = [
+  { href: "/#about", label: "About" },
+  { href: "/#services", label: "Services" },
+  { href: "/#courses", label: "Courses" },
+  { href: "/#team", label: "Team" },
+  { href: "/#events", label: "Events" },
+  { href: "/#gallery", label: "Gallery" },
+  { href: "/#stories", label: "Stories" },
+  { href: "/#enquire", label: "Contact" },
+  { href: "/privacy", label: "Privacy" },
+];
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <div class="site-footer__brand">
+      <strong>{site.brand}</strong>
+      <p>{site.tagline}</p>
+      <div class="site-footer__socials" aria-label="Follow on social media">
+        <a href={site.socials.youtube} target="_blank" rel="noopener" aria-label="YouTube"><Icon name="youtube" size={20} /></a>
+        <a href={site.socials.instagram} target="_blank" rel="noopener" aria-label="Instagram"><Icon name="instagram" size={20} /></a>
+        <a href={site.socials.linkedin} target="_blank" rel="noopener" aria-label="LinkedIn"><Icon name="linkedin" size={20} /></a>
+      </div>
+    </div>
+
+    <div class="site-footer__col">
+      <h3>Quick links</h3>
+      <ul>
+        {links.map((l) => <li><a href={l.href}>{l.label}</a></li>)}
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h3>Get in touch</h3>
+      <ul class="site-footer__contact">
+        <li><Icon name="mail" size={16} /> <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a></li>
+        <li>
+          <Icon name="whatsapp" size={16} />
+          <a href={`https://wa.me/${site.contact.whatsapp.replace(/[^0-9]/g, "")}`} target="_blank" rel="noopener">{site.contact.whatsappDisplay}</a>
+        </li>
+        <li><Icon name="map-pin" size={16} /> <span>{site.contact.city}</span></li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="container site-footer__base">
+    <p>© {year} {site.brand}. All rights reserved.</p>
+    <p>Made with care in India.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    background: var(--color-primary);
+    color: var(--color-cream);
+    padding-block: 3.5rem 1.5rem;
+    margin-top: 2rem;
+  }
+  .site-footer__inner {
+    display: grid;
+    gap: 2.5rem;
+    grid-template-columns: 1fr;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid rgba(255, 250, 243, 0.12);
+  }
+  @media (min-width: 800px) {
+    .site-footer__inner { grid-template-columns: 1.4fr 1fr 1fr; }
+  }
+  .site-footer__brand strong {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    color: var(--color-cream);
+    margin-bottom: .6rem;
+  }
+  .site-footer__brand p {
+    color: rgba(255, 250, 243, 0.78);
+    margin-bottom: 1.25rem;
+    max-width: 36ch;
+  }
+  .site-footer__socials {
+    display: inline-flex;
+    gap: .65rem;
+  }
+  .site-footer__socials a {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 250, 243, 0.08);
+    color: var(--color-cream);
+    transition: background .2s var(--ease), color .2s var(--ease);
+  }
+  .site-footer__socials a:hover { background: var(--color-accent); color: var(--color-primary-700); }
+
+  .site-footer__col h3 {
+    color: var(--color-accent);
+    font-size: .85rem;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+    margin-bottom: 1rem;
+  }
+  .site-footer__col ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: .5rem;
+  }
+  .site-footer__col a {
+    color: rgba(255, 250, 243, 0.85);
+    font-size: .95rem;
+  }
+  .site-footer__col a:hover { color: var(--color-accent); }
+  .site-footer__contact li {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    color: rgba(255, 250, 243, 0.85);
+    font-size: .95rem;
+  }
+  .site-footer__contact :global(svg) { color: var(--color-accent); flex-shrink: 0; }
+  .site-footer__contact li { min-width: 0; }
+  .site-footer__contact a { overflow-wrap: anywhere; }
+
+  .site-footer__base {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: .5rem;
+    padding-top: 1.5rem;
+    color: rgba(255, 250, 243, 0.6);
+    font-size: .85rem;
+  }
+</style>

@@ -1,0 +1,106 @@
+---
+import courses from "~/data/courses.json";
+import Icon from "./Icon.astro";
+---
+
+<section class="section" id="courses">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Courses</span>
+      <h2 class="section-title">Explore our courses — tailored for your success</h2>
+      <p class="section-intro">
+        Structured programmes for every stage and goal — from personality mastery and public
+        speaking to interview prep, pageant training, and confidence-building for kids.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      {courses.map((c) => (
+        <article class="card course-card reveal">
+          <div class="course-card__head">
+            <span class="course-card__icon" aria-hidden="true">
+              <Icon name={c.icon} size={24} />
+            </span>
+            <span class="course-card__duration">
+              <Icon name="calendar" size={14} /> {c.duration}
+            </span>
+          </div>
+          <h3>{c.title}</h3>
+          <p>{c.description}</p>
+          <a
+            class="course-card__cta"
+            href={`#enquire?interest=${encodeURIComponent(c.interest)}`}
+            data-interest={c.interest}
+          >
+            Book free consultation <Icon name="arrow-right" size={16} />
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .course-card {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .course-card__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .75rem;
+    margin-bottom: .25rem;
+  }
+  .course-card__icon {
+    width: 52px; height: 52px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(233, 180, 76, 0.18), rgba(231, 111, 81, 0.12));
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .course-card__duration {
+    display: inline-flex;
+    align-items: center;
+    gap: .3rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: .78rem;
+    color: var(--color-primary);
+    background: var(--color-cream-2);
+    padding: .3rem .6rem;
+    border-radius: var(--radius-sm);
+  }
+  .course-card__duration :global(svg) { color: var(--color-accent-700); }
+  .course-card h3 { font-size: 1.15rem; color: var(--color-primary); }
+  .course-card p { color: var(--color-text-muted); margin: 0; }
+  .course-card__cta {
+    margin-top: auto;
+    padding-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+  }
+  .course-card__cta:hover { color: var(--color-coral); }
+</style>
+
+<script>
+  // Pre-select interest in the enquiry form when a course CTA is clicked.
+  document.querySelectorAll<HTMLAnchorElement>(".course-card__cta").forEach((a) => {
+    a.addEventListener("click", () => {
+      const interest = a.dataset.interest;
+      if (!interest) return;
+      const select = document.querySelector<HTMLSelectElement>("#interest");
+      if (select) {
+        const option = Array.from(select.options).find((o) => o.value === interest);
+        if (option) select.value = interest;
+      }
+    });
+  });
+</script>

@@ -1,0 +1,24 @@
+{
+  "brand": "Pleasant Personality Academy",
+  "coach": "Manisha Yadav",
+  "tagline": "Become the most confident, pleasant version of yourself.",
+  "subTagline": "Personality development, communication and confidence coaching for students, professionals, and homemakers stepping into their next chapter.",
+  "contact": {
+    "email": "pleasantpersonalityacademy2023@gmail.com",
+    "whatsapp": "+919415709356",
+    "whatsappDisplay": "+91 9415 709 356",
+    "city": "Jaipur, India"
+  },
+  "socials": {
+    "linkedin": "https://in.linkedin.com/in/manisha-yadav-3aab0948",
+    "instagram": "https://www.instagram.com/pleasantpersonalityacademy/",
+    "youtube": "https://www.youtube.com/user/messageworld9"
+  },
+  "youtubeChannelId": "UC-messageworld9",
+  "stats": [
+    { "value": "1,200+", "label": "Students coached" },
+    { "value": "80+", "label": "Workshops delivered" },
+    { "value": "12+", "label": "Years of experience" },
+    { "value": "30k+", "label": "YouTube community" }
+  ]
+}

@@ -1,0 +1,208 @@
+---
+import site from "~/data/site.json";
+import Icon from "./Icon.astro";
+
+const pillars = [
+  {
+    title: "Warm, never preachy",
+    text: "Coaching that meets you exactly where you are — with kindness, patience, and zero judgement.",
+  },
+  {
+    title: "Practical, not theoretical",
+    text: "Every session ends with something you can use on Monday morning — at work, in class, at home.",
+  },
+  {
+    title: "Built around you",
+    text: "From shy first-jobbers to seasoned managers, plans are tailored — never a one-size-fits-all script.",
+  },
+];
+---
+
+<section class="section" id="about">
+  <div class="container about">
+    <div class="about__copy reveal">
+      <span class="section-eyebrow">About</span>
+      <h2 class="section-title">Hi, I'm Manisha — and I believe pleasant is a superpower.</h2>
+      <p>
+        For over a decade I've worked with students, professionals and homemakers who carry
+        more talent than the world has noticed yet. The reason is rarely ability — it's the
+        quiet ways we hide. A held-back voice. A careful posture. A practiced smallness.
+      </p>
+      <p>
+        At Pleasant Personality Academy we work, gently and steadily, to undo that — until
+        you walk into a room and people feel something has changed before you've even spoken.
+        That's the goal: a presence that is both confident and kind.
+      </p>
+
+      <ul class="about__pillars">
+        {pillars.map((p) => (
+          <li>
+            <span class="about__pillar-icon" aria-hidden="true">
+              <Icon name="check" size={18} />
+            </span>
+            <div>
+              <h3>{p.title}</h3>
+              <p>{p.text}</p>
+            </div>
+          </li>
+        ))}
+      </ul>
+
+      <div class="about__sig">
+        <p class="about__sig-name">— Manisha Yadav</p>
+        <p class="about__sig-role">Founder & Head Coach, {site.brand}</p>
+      </div>
+    </div>
+
+    <aside class="about__credentials reveal">
+      <div class="about__portrait">
+        <!-- Placeholder coach portrait -->
+        <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <defs>
+            <linearGradient id="aboutBg" x1="0" x2="0" y1="0" y2="1">
+              <stop offset="0%" stop-color="#FBF3E6"/>
+              <stop offset="100%" stop-color="#E9B44C" stop-opacity=".5"/>
+            </linearGradient>
+            <linearGradient id="aboutSkin" x1="0" x2="1" y1="0" y2="1">
+              <stop offset="0%" stop-color="#f1c79e"/>
+              <stop offset="100%" stop-color="#e0a877"/>
+            </linearGradient>
+          </defs>
+          <rect width="400" height="480" rx="28" fill="url(#aboutBg)"/>
+          <circle cx="200" cy="180" r="86" fill="url(#aboutSkin)"/>
+          <path d="M114 200c0-50 38-90 86-90s86 40 86 90c0 18-6 30-14 36-12-30-40-50-72-50s-60 20-72 50c-8-6-14-18-14-36z" fill="#1F2937"/>
+          <path d="M70 480c0-78 58-140 130-140s130 62 130 140H70z" fill="#0F4C5C"/>
+          <path d="M150 360c10 14 30 22 50 22s40-8 50-22l-6 26c-4 16-22 30-44 30s-40-14-44-30l-6-26z" fill="#FFFAF3" opacity=".15"/>
+          <circle cx="178" cy="200" r="4" fill="#1F2937"/>
+          <circle cx="222" cy="200" r="4" fill="#1F2937"/>
+          <path d="M180 230c10 8 30 8 40 0" stroke="#1F2937" stroke-width="3" stroke-linecap="round" fill="none"/>
+        </svg>
+        <div class="about__badge" aria-hidden="true">
+          <Icon name="spark" size={20} />
+          <span>12+ years coaching</span>
+        </div>
+      </div>
+
+      <h3>Credentials & focus</h3>
+      <ul>
+        <li><Icon name="check" size={18} /> 12+ years of personality & communication coaching</li>
+        <li><Icon name="check" size={18} /> Featured speaker at colleges and corporates across India</li>
+        <li><Icon name="check" size={18} /> 1,200+ learners coached in 1:1 and small-group formats</li>
+        <li><Icon name="check" size={18} /> Active YouTube community of 50,000+ learners</li>
+        <li><Icon name="check" size={18} /> Hindi & English programs — online and in-person</li>
+      </ul>
+      <a class="btn btn--primary" href="#enquire">Work with me</a>
+    </aside>
+  </div>
+</section>
+
+<style>
+  .about {
+    display: grid;
+    gap: clamp(2rem, 4vw, 3rem);
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .about__copy p { margin-bottom: 1rem; color: var(--color-text); }
+  .about__copy > p { max-width: 60ch; }
+  .about__pillars {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0;
+    display: grid;
+    gap: 1.25rem;
+  }
+  .about__pillars li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: start;
+  }
+  .about__pillar-icon {
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: rgba(15, 76, 92, 0.08);
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .about__pillars h3 { font-size: 1.05rem; margin-bottom: .25rem; }
+  .about__pillars p { color: var(--color-text-muted); margin: 0; }
+  .about__sig { margin-top: 1.5rem; }
+  .about__sig-name {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-primary);
+    margin: 0;
+  }
+  .about__sig-role {
+    color: var(--color-text-muted);
+    font-size: .9rem;
+    margin: 0;
+  }
+  .about__credentials {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 1.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid rgba(15, 76, 92, 0.06);
+  }
+  .about__portrait {
+    position: relative;
+    border-radius: var(--radius);
+    overflow: hidden;
+    aspect-ratio: 5 / 4;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-cream-2) 100%);
+  }
+  .about__portrait svg {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+  .about__badge {
+    position: absolute;
+    bottom: 16px;
+    left: 16px;
+    background: var(--color-white);
+    padding: .6rem .95rem;
+    border-radius: 999px;
+    box-shadow: var(--shadow);
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: .82rem;
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+  }
+  .about__badge :global(svg) { color: var(--color-accent); }
+  .about__credentials h3 {
+    margin-bottom: 1rem;
+    font-size: 1.15rem;
+  }
+  .about__credentials ul {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .8rem;
+  }
+  .about__credentials li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .65rem;
+    align-items: start;
+    font-size: .95rem;
+    color: var(--color-text);
+  }
+  .about__credentials li :global(svg) { color: var(--color-accent-700); margin-top: 3px; }
+
+  @media (min-width: 900px) {
+    .about { grid-template-columns: 1.5fr 1fr; gap: 4rem; }
+  }
+</style>

@@ -1,0 +1,163 @@
+---
+import site from "~/data/site.json";
+import Icon from "./Icon.astro";
+---
+
+<section class="section section--alt" id="media">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Media</span>
+      <h2 class="section-title">Follow along</h2>
+      <p class="section-intro">
+        Weekly videos, behind-the-scenes from workshops, and short coaching reels — pick
+        the platform you already live on.
+      </p>
+    </div>
+
+    <div class="media-grid">
+      <a class="media-card media-card--yt reveal" href={site.socials.youtube} target="_blank" rel="noopener">
+        <Icon name="youtube" size={36} />
+        <div>
+          <h3>YouTube</h3>
+          <p>Long-form lessons on personality, communication and confidence.</p>
+        </div>
+        <span class="media-card__cta">Subscribe <Icon name="arrow-right" size={16} /></span>
+      </a>
+      <a class="media-card media-card--ig reveal" href={site.socials.instagram} target="_blank" rel="noopener">
+        <Icon name="instagram" size={36} />
+        <div>
+          <h3>Instagram</h3>
+          <p>Daily reels, quick tips, and reminders to be kind to yourself today.</p>
+        </div>
+        <span class="media-card__cta">Follow <Icon name="arrow-right" size={16} /></span>
+      </a>
+      <a class="media-card media-card--li reveal" href={site.socials.linkedin} target="_blank" rel="noopener">
+        <Icon name="linkedin" size={36} />
+        <div>
+          <h3>LinkedIn</h3>
+          <p>Career, soft-skills, and corporate workshop highlights.</p>
+        </div>
+        <span class="media-card__cta">Connect <Icon name="arrow-right" size={16} /></span>
+      </a>
+    </div>
+
+    <div class="media-embed reveal">
+      <a
+        class="media-embed__cover"
+        href={site.socials.youtube}
+        target="_blank"
+        rel="noopener noreferrer"
+        aria-label="Watch latest videos on YouTube"
+      >
+        <div class="media-embed__art" aria-hidden="true">
+          <svg viewBox="0 0 800 450" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+            <defs>
+              <linearGradient id="ytbg" x1="0" x2="1" y1="0" y2="1">
+                <stop offset="0%" stop-color="#0F4C5C"/>
+                <stop offset="100%" stop-color="#0a3946"/>
+              </linearGradient>
+            </defs>
+            <rect width="800" height="450" fill="url(#ytbg)"/>
+            <circle cx="700" cy="-40" r="220" fill="#E9B44C" opacity=".18"/>
+            <circle cx="-40" cy="490" r="200" fill="#E76F51" opacity=".14"/>
+            <text x="60" y="120" font-family="Poppins, sans-serif" font-size="22" font-weight="600" fill="#E9B44C" letter-spacing="4">WATCH ON YOUTUBE</text>
+            <text x="60" y="200" font-family="Poppins, sans-serif" font-size="44" font-weight="800" fill="#FFFAF3">Weekly lessons on personality,</text>
+            <text x="60" y="250" font-family="Poppins, sans-serif" font-size="44" font-weight="800" fill="#FFFAF3">communication &amp; confidence.</text>
+            <text x="60" y="310" font-family="Inter, sans-serif" font-size="20" fill="#FFFAF3" opacity=".82">50,000+ learners — join the community</text>
+          </svg>
+        </div>
+        <span class="media-embed__play" aria-hidden="true">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+            <path d="M8 5v14l11-7L8 5z" fill="currentColor"/>
+          </svg>
+        </span>
+      </a>
+      <p class="media-embed__caption">
+        Latest videos live on the channel —
+        <a href={site.socials.youtube} target="_blank" rel="noopener noreferrer">visit YouTube</a>.
+      </p>
+    </div>
+  </div>
+</section>
+
+<style>
+  .media-grid {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 3rem;
+  }
+  @media (min-width: 800px) {
+    .media-grid { grid-template-columns: repeat(3, 1fr); }
+  }
+  .media-card {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1.75rem;
+    border-radius: var(--radius-lg);
+    color: var(--color-cream);
+    text-decoration: none;
+    box-shadow: var(--shadow-sm);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+    min-height: 220px;
+  }
+  .media-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); color: var(--color-cream); }
+  .media-card h3 { color: var(--color-cream); font-size: 1.2rem; margin-bottom: .25rem; }
+  .media-card p { color: rgba(255, 250, 243, 0.88); margin: 0; font-size: .95rem; }
+  .media-card__cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: .95rem;
+  }
+  .media-card--yt { background: linear-gradient(135deg, #c4302b, #8b1a1a); }
+  .media-card--ig { background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); }
+  .media-card--li { background: linear-gradient(135deg, #0a66c2, #084d92); }
+
+  .media-embed__cover {
+    position: relative;
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    background: var(--color-primary);
+    transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  }
+  .media-embed__cover:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+  .media-embed__art {
+    position: absolute;
+    inset: 0;
+  }
+  .media-embed__art svg { width: 100%; height: 100%; display: block; }
+  .media-embed__play {
+    position: absolute;
+    right: 24px;
+    bottom: 24px;
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #c4302b;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.3);
+    transition: transform .2s var(--ease);
+  }
+  .media-embed__cover:hover .media-embed__play { transform: scale(1.06); }
+  .media-embed__caption {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: .9rem;
+    margin-top: 1rem;
+  }
+</style>

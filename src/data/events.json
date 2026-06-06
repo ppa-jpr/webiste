@@ -1,0 +1,38 @@
+[
+  {
+    "id": "weekend-confidence",
+    "title": "Weekend Confidence Bootcamp",
+    "date": "2026-06-14",
+    "time": "10:00 AM – 1:00 PM IST",
+    "format": "Online (Zoom)",
+    "description": "A 3-hour live session to break stage fear, fix self-talk, and walk into Monday with a calmer, clearer voice.",
+    "status": "upcoming"
+  },
+  {
+    "id": "delhi-workshop",
+    "title": "Pleasant Personality Workshop — Delhi",
+    "date": "2026-06-22",
+    "time": "11:00 AM – 4:00 PM",
+    "format": "Offline · Connaught Place, New Delhi",
+    "description": "An in-person, small-group day on body language, conversation skills and warm professional presence. Lunch included.",
+    "status": "upcoming"
+  },
+  {
+    "id": "students-bootcamp",
+    "title": "Campus Communication Bootcamp",
+    "date": "2026-07-05",
+    "time": "6:00 PM – 8:00 PM IST",
+    "format": "Online (Zoom)",
+    "description": "For final-year and first-year college students preparing for internships, placements and the campus stage.",
+    "status": "upcoming"
+  },
+  {
+    "id": "corporate-clinic",
+    "title": "Corporate Soft-Skills Clinic",
+    "date": "2026-07-19",
+    "time": "By appointment",
+    "format": "Offline · NCR-based companies",
+    "description": "A half-day in-house clinic for HR teams who want a quick, high-impact upgrade for their early-career hires.",
+    "status": "upcoming"
+  }
+]

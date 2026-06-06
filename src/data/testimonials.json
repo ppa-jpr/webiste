@@ -1,0 +1,44 @@
+[
+  {
+    "id": "t1",
+    "name": "Ananya R.",
+    "role": "MBA student, Bengaluru",
+    "quote": "I went from freezing up in interviews to leading group discussions. Manisha ma'am doesn't just teach — she rewires how you see yourself.",
+    "image": "/images/testimonials/t1.svg"
+  },
+  {
+    "id": "t2",
+    "name": "Rakesh M.",
+    "role": "Sales lead, Pune",
+    "quote": "Eight sessions and my team noticed the difference before I did. Calmer in meetings, sharper on calls. Worth every rupee.",
+    "image": "/images/testimonials/t2.svg"
+  },
+  {
+    "id": "t3",
+    "name": "Shalini D.",
+    "role": "Returning professional, Delhi",
+    "quote": "After 7 years at home I was terrified to step out again. The Academy gave me back my voice — and a job offer within 3 months.",
+    "image": "/images/testimonials/t3.svg"
+  },
+  {
+    "id": "t4",
+    "name": "Vivek S.",
+    "role": "Engineering student, Hyderabad",
+    "quote": "The workshop felt like a warm conversation, not a class. I walked out with a new way of carrying myself, not just notes.",
+    "image": "/images/testimonials/t4.svg"
+  },
+  {
+    "id": "t5",
+    "name": "Neha P.",
+    "role": "HR Manager, Gurugram",
+    "quote": "We hired Manisha for our graduate batch. The feedback was the strongest we've ever had for any training program.",
+    "image": "/images/testimonials/t5.svg"
+  },
+  {
+    "id": "t6",
+    "name": "Karan J.",
+    "role": "Founder, EdTech startup",
+    "quote": "Pleasant, prepared, and deeply practical. Manisha is the rare coach who is as kind as she is rigorous.",
+    "image": "/images/testimonials/t6.svg"
+  }
+]

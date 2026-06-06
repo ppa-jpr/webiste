@@ -1,0 +1,44 @@
+[
+  {
+    "id": "one-on-one",
+    "icon": "spark",
+    "title": "One-on-One Coaching",
+    "description": "A personalised journey to unlock your confidence, communication and self-belief — with weekly sessions tailored to your goals.",
+    "interest": "1:1 Coaching"
+  },
+  {
+    "id": "workshops",
+    "icon": "people",
+    "title": "Personality Development Workshops",
+    "description": "Small-group sessions on soft skills, self-presentation and emotional intelligence — practical, warm, and immediately applicable.",
+    "interest": "Workshop"
+  },
+  {
+    "id": "public-speaking",
+    "icon": "mic",
+    "title": "Public Speaking & Communication",
+    "description": "Overcome stage fear, structure your thoughts, and speak with clarity, presence and conviction in any setting.",
+    "interest": "Workshop"
+  },
+  {
+    "id": "interview-grooming",
+    "icon": "shine",
+    "title": "Interview & Grooming",
+    "description": "Body language, etiquette, wardrobe and interview readiness — everything you need to walk in feeling prepared and pleasant.",
+    "interest": "1:1 Coaching"
+  },
+  {
+    "id": "corporate",
+    "icon": "briefcase",
+    "title": "Corporate Soft-Skills Training",
+    "description": "Customised team workshops for organisations — communication, leadership presence, and a culture of pleasant professionalism.",
+    "interest": "Corporate Training"
+  },
+  {
+    "id": "students",
+    "icon": "grad",
+    "title": "Student & Career Programs",
+    "description": "Confidence, communication and personality programs for college students and early-career professionals stepping into the world.",
+    "interest": "Workshop"
+  }
+]

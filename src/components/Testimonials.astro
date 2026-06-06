@@ -1,0 +1,136 @@
+---
+import testimonials from "~/data/testimonials.json";
+import stories from "~/data/stories.json";
+import Icon from "./Icon.astro";
+---
+
+<section class="section" id="stories">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Stories</span>
+      <h2 class="section-title">What learners say</h2>
+      <p class="section-intro">
+        Real words from people who arrived unsure and left feeling like themselves —
+        just clearer, calmer, and a little more confident.
+      </p>
+    </div>
+
+    <div class="grid grid--3 t-grid">
+      {testimonials.map((t) => (
+        <figure class="card t-card reveal">
+          <Icon name="quote" size={28} class="t-card__quoteIcon" />
+          <blockquote>{t.quote}</blockquote>
+          <figcaption class="t-card__meta">
+            <img src={t.image} alt="" width="48" height="48" loading="lazy" decoding="async" />
+            <div>
+              <strong>{t.name}</strong>
+              <span>{t.role}</span>
+            </div>
+          </figcaption>
+        </figure>
+      ))}
+    </div>
+
+    {stories.length > 0 && (
+      <div class="stories">
+        {stories.map((s) => (
+          <article class="story reveal">
+            <h3>{s.name}</h3>
+            <div class="story__grid">
+              <div>
+                <span class="story__label">Before</span>
+                <p>{s.before}</p>
+              </div>
+              <div>
+                <span class="story__label">After</span>
+                <p>{s.after}</p>
+              </div>
+            </div>
+            <p class="story__quote">"{s.quote}"</p>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .t-grid { margin-bottom: 3rem; }
+  .t-card {
+    position: relative;
+    padding-top: 2.25rem;
+  }
+  .t-card__quoteIcon {
+    position: absolute;
+    top: 18px; left: 18px;
+    color: var(--color-accent);
+    opacity: .7;
+  }
+  .t-card blockquote {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--color-text);
+    margin: 0 0 1.25rem;
+  }
+  .t-card__meta {
+    display: inline-flex;
+    align-items: center;
+    gap: .75rem;
+    margin-top: auto;
+  }
+  .t-card__meta img {
+    width: 48px; height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: var(--color-cream-2);
+  }
+  .t-card__meta strong {
+    display: block;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+  }
+  .t-card__meta span {
+    font-size: .85rem;
+    color: var(--color-text-muted);
+  }
+
+  .stories {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 800px) {
+    .stories { grid-template-columns: 1fr 1fr; }
+  }
+  .story {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-700) 100%);
+    color: var(--color-cream);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+  }
+  .story h3 { color: var(--color-accent); margin-bottom: 1rem; font-size: 1.2rem; }
+  .story__grid {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr 1fr;
+    margin-bottom: 1.25rem;
+  }
+  .story__label {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-size: .75rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-accent);
+    margin-bottom: .35rem;
+  }
+  .story__grid p { color: rgba(255, 250, 243, 0.92); font-size: .95rem; margin: 0; }
+  .story__quote {
+    font-style: italic;
+    border-left: 3px solid var(--color-accent);
+    padding-left: 1rem;
+    color: var(--color-cream);
+    margin: 0;
+  }
+</style>

@@ -1,0 +1,106 @@
+---
+import events from "~/data/events.json";
+import Icon from "./Icon.astro";
+
+function formatDate(iso: string) {
+  const d = new Date(iso + "T00:00:00");
+  return d.toLocaleDateString("en-IN", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+    year: "numeric",
+  });
+}
+
+const upcoming = events.filter((e) => e.status !== "past");
+---
+
+<section class="section section--alt" id="events">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Events</span>
+      <h2 class="section-title">Upcoming workshops & bootcamps</h2>
+      <p class="section-intro">
+        A mix of online and in-person sessions through the year. Spots are kept small on
+        purpose — to enquire about a seat, drop us a message below.
+      </p>
+    </div>
+
+    {upcoming.length === 0 ? (
+      <p class="event-empty">New events are being planned — enquire below to be notified first.</p>
+    ) : (
+      <div class="grid grid--2">
+        {upcoming.map((e) => (
+          <article class="card event-card reveal">
+            <div class="event-card__date">
+              <Icon name="calendar" size={18} />
+              <time datetime={e.date}>{formatDate(e.date)}</time>
+              <span class="event-card__time">· {e.time}</span>
+            </div>
+            <h3>{e.title}</h3>
+            <p class="event-card__format">
+              <Icon name="map-pin" size={16} />
+              {e.format}
+            </p>
+            <p class="event-card__desc">{e.description}</p>
+            <a class="btn btn--ghost btn--sm event-card__cta" href="#enquire" data-interest="Workshop">
+              Enquire to join
+              <Icon name="arrow-right" size={16} />
+            </a>
+          </article>
+        ))}
+      </div>
+    )}
+  </div>
+</section>
+
+<style>
+  .event-card {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .event-card__date {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--color-primary);
+    font-size: .9rem;
+  }
+  .event-card__date :global(svg) { color: var(--color-accent-700); }
+  .event-card__time { color: var(--color-text-muted); font-weight: 500; }
+  .event-card h3 { font-size: 1.2rem; }
+  .event-card__format {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    color: var(--color-text-muted);
+    font-size: .9rem;
+    margin: 0;
+  }
+  .event-card__desc { color: var(--color-text); margin: 0; }
+  .event-card__cta { align-self: flex-start; margin-top: auto; }
+  .event-empty {
+    text-align: center;
+    color: var(--color-text-muted);
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+  }
+</style>
+
+<script>
+  document.querySelectorAll<HTMLAnchorElement>(".event-card__cta").forEach((a) => {
+    a.addEventListener("click", () => {
+      const interest = a.dataset.interest;
+      if (!interest) return;
+      const select = document.querySelector<HTMLSelectElement>("#interest");
+      if (select) {
+        const option = Array.from(select.options).find((o) => o.value === interest);
+        if (option) select.value = interest;
+      }
+    });
+  });
+</script>

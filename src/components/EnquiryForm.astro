@@ -1,0 +1,439 @@
+---
+import site from "~/data/site.json";
+import Icon from "./Icon.astro";
+
+// TODO: form-service endpoint. Replace this URL with your Formspree / Web3Forms / Getform / Netlify endpoint.
+// Formspree:  https://formspree.io/f/yourFormId
+// Web3Forms:  https://api.web3forms.com/submit  (and add a hidden <input name="access_key" value="YOUR_KEY">)
+// Netlify:    leave action empty + add `netlify` + `name="enquiry"` attrs on the <form>
+const FORM_ENDPOINT = "https://formspree.io/f/REPLACE_WITH_YOUR_FORM_ID";
+
+const interests = [
+  "1:1 Coaching",
+  "Workshop",
+  "Corporate Training",
+  "Student Program",
+  "Other",
+];
+---
+
+<section class="section section--dark" id="enquire">
+  <div class="container enquiry">
+    <div class="enquiry__intro reveal">
+      <span class="section-eyebrow">Contact</span>
+      <h2 class="section-title">Tell us a little about you.</h2>
+      <p class="section-intro">
+        Share a few details and Manisha or the team will get back to you within 1–2 working days.
+        Prefer to chat first? WhatsApp us — we read every message.
+      </p>
+
+      <ul class="enquiry__contact" aria-label="Direct contact options">
+        <li>
+          <span class="enquiry__contact-icon"><Icon name="mail" size={18} /></span>
+          <div>
+            <span class="enquiry__contact-label">Email</span>
+            <a href={`mailto:${site.contact.email}`}>{site.contact.email}</a>
+          </div>
+        </li>
+        <li>
+          <span class="enquiry__contact-icon"><Icon name="whatsapp" size={18} /></span>
+          <div>
+            <span class="enquiry__contact-label">WhatsApp</span>
+            <a href={`https://wa.me/${site.contact.whatsapp.replace(/[^0-9]/g, "")}`} target="_blank" rel="noopener">
+              {site.contact.whatsappDisplay}
+            </a>
+          </div>
+        </li>
+        <li>
+          <span class="enquiry__contact-icon"><Icon name="map-pin" size={18} /></span>
+          <div>
+            <span class="enquiry__contact-label">Based in</span>
+            <span>{site.contact.city}</span>
+          </div>
+        </li>
+      </ul>
+    </div>
+
+    <form
+      class="enquiry__form reveal"
+      id="enquiryForm"
+      action={FORM_ENDPOINT}
+      method="POST"
+      novalidate
+      data-pending-text="Sending…"
+      data-fallback-email={site.contact.email}
+      aria-label="Enquiry form"
+    >
+      <!-- Honeypot — bots will fill this; humans never see it. -->
+      <div class="hp" aria-hidden="true">
+        <label>Don't fill this out: <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" /></label>
+      </div>
+      <!-- Email subject for Formspree (ignored by other providers) -->
+      <input type="hidden" name="_subject" value="New enquiry — Pleasant Personality Academy" />
+
+      <div class="field">
+        <label for="name">Your name <span class="req" aria-hidden="true">*</span></label>
+        <input id="name" name="name" type="text" required autocomplete="name" minlength="2"
+               aria-required="true" aria-describedby="name-error" />
+        <small id="name-error" class="field__error">Please tell us your name.</small>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="email">Email <span class="req" aria-hidden="true">*</span></label>
+          <input id="email" name="email" type="email" required autocomplete="email"
+                 aria-required="true" aria-describedby="email-error" />
+          <small id="email-error" class="field__error">Please enter a valid email.</small>
+        </div>
+        <div class="field">
+          <label for="phone">Phone / WhatsApp</label>
+          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel"
+                 aria-describedby="phone-error" />
+          <small id="phone-error" class="field__error">Please enter a valid phone number.</small>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="interest">I'm interested in <span class="req" aria-hidden="true">*</span></label>
+        <select id="interest" name="interest" required aria-required="true" aria-describedby="interest-error">
+          <option value="">Select an option…</option>
+          {interests.map((i) => <option value={i}>{i}</option>)}
+        </select>
+        <small id="interest-error" class="field__error">Please pick one.</small>
+      </div>
+
+      <div class="field">
+        <label for="message">Your message</label>
+        <textarea id="message" name="message" rows="4" placeholder="Anything we should know before getting in touch…"></textarea>
+      </div>
+
+      <div class="field field--check">
+        <label class="check">
+          <input id="consent" name="consent" type="checkbox" required
+                 aria-required="true" aria-describedby="consent-error" />
+          <span>
+            I agree to be contacted by Pleasant Personality Academy about my enquiry, and
+            have read the <a href="/privacy">Privacy Policy</a>.
+          </span>
+        </label>
+        <small id="consent-error" class="field__error">Please accept to continue.</small>
+      </div>
+
+      <button class="btn btn--accent enquiry__submit" type="submit">
+        Send enquiry
+        <Icon name="arrow-right" size={18} />
+      </button>
+
+      <div class="enquiry__status" role="status" aria-live="polite" tabindex="-1"></div>
+    </form>
+  </div>
+</section>
+
+<style>
+  .enquiry {
+    display: grid;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+  .enquiry__intro p { color: rgba(255, 250, 243, 0.85); }
+  .enquiry__contact {
+    list-style: none;
+    padding: 0;
+    margin: 2rem 0 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .enquiry__contact li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1rem;
+    align-items: center;
+  }
+  .enquiry__contact-icon {
+    width: 40px; height: 40px;
+    border-radius: 12px;
+    background: rgba(233, 180, 76, 0.15);
+    color: var(--color-accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .enquiry__contact-label {
+    display: block;
+    font-size: .78rem;
+    text-transform: uppercase;
+    letter-spacing: .12em;
+    color: var(--color-accent);
+    font-family: var(--font-heading);
+    margin-bottom: .15rem;
+  }
+  .enquiry__contact a {
+    color: var(--color-cream);
+    font-weight: 500;
+  }
+  .enquiry__contact a:hover { color: var(--color-accent); }
+
+  .enquiry__form {
+    background: var(--color-cream);
+    color: var(--color-text);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    box-shadow: var(--shadow-lg);
+  }
+  .hp {
+    position: absolute;
+    left: -10000px;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
+  .field { margin-bottom: 1.1rem; display: flex; flex-direction: column; }
+  .field-row {
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: 1fr;
+  }
+  @media (min-width: 600px) {
+    .field-row { grid-template-columns: 1fr 1fr; }
+  }
+  .field label {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: .92rem;
+    color: var(--color-primary);
+    margin-bottom: .35rem;
+  }
+  .field input,
+  .field select,
+  .field textarea {
+    width: 100%;
+    border: 1.5px solid rgba(15, 76, 92, 0.18);
+    border-radius: var(--radius-sm);
+    padding: .75rem .9rem;
+    background: var(--color-white);
+    color: var(--color-text);
+    transition: border-color .2s var(--ease), box-shadow .2s var(--ease);
+    font-family: var(--font-body);
+  }
+  .field textarea { resize: vertical; min-height: 100px; }
+  .field input:focus,
+  .field select:focus,
+  .field textarea:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(15, 76, 92, 0.12);
+  }
+  .field[data-invalid="true"] input,
+  .field[data-invalid="true"] select,
+  .field[data-invalid="true"] textarea {
+    border-color: var(--color-error);
+  }
+  .field__error {
+    color: var(--color-error);
+    font-size: .82rem;
+    margin-top: .35rem;
+    display: none;
+  }
+  .field[data-invalid="true"] .field__error { display: block; }
+  .req { color: var(--color-coral); margin-left: 2px; }
+
+  .check {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .65rem;
+    font-size: .92rem;
+    color: var(--color-text);
+    align-items: start;
+  }
+  .check input { width: 18px; height: 18px; margin-top: 4px; accent-color: var(--color-primary); }
+  .check a { color: var(--color-primary); text-decoration: underline; }
+
+  .enquiry__submit {
+    margin-top: .5rem;
+    width: 100%;
+  }
+  .enquiry__submit:disabled { opacity: .7; cursor: not-allowed; }
+
+  .enquiry__status {
+    margin-top: 1rem;
+    padding: 0;
+    border-radius: var(--radius-sm);
+    font-size: .95rem;
+  }
+  .enquiry__status[data-state="success"] {
+    padding: .85rem 1rem;
+    background: var(--color-success-bg);
+    color: var(--color-success);
+    border: 1px solid rgba(31, 122, 58, 0.25);
+  }
+  .enquiry__status[data-state="error"] {
+    padding: .85rem 1rem;
+    background: var(--color-error-bg);
+    color: var(--color-error);
+    border: 1px solid rgba(179, 38, 30, 0.25);
+  }
+
+  @media (min-width: 900px) {
+    .enquiry { grid-template-columns: 1fr 1.1fr; gap: 4rem; }
+  }
+</style>
+
+<script>
+  const form = document.getElementById("enquiryForm") as HTMLFormElement | null;
+  if (form) {
+    const statusEl = form.querySelector<HTMLDivElement>(".enquiry__status");
+    const submitBtn = form.querySelector<HTMLButtonElement>(".enquiry__submit");
+    const originalBtnHTML = submitBtn?.innerHTML ?? "";
+
+    const setError = (name: string, invalid: boolean) => {
+      const el = form.querySelector<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
+        `[name="${name}"]`
+      );
+      const wrapper = el?.closest<HTMLDivElement>(".field");
+      if (wrapper) wrapper.dataset.invalid = invalid ? "true" : "false";
+      el?.setAttribute("aria-invalid", invalid ? "true" : "false");
+    };
+
+    const phoneOk = (v: string) => {
+      const digits = v.replace(/[^0-9]/g, "");
+      return digits.length >= 7 && digits.length <= 15 && /^[0-9 +()\-. ]+$/.test(v);
+    };
+
+    const validate = (): { valid: boolean; firstInvalid: HTMLElement | null } => {
+      let firstInvalid: HTMLElement | null = null;
+      const fields: { name: string; check: (v: string, el: HTMLInputElement) => boolean }[] = [
+        { name: "name", check: (v) => v.trim().length >= 2 },
+        { name: "email", check: (v) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v.trim()) },
+        { name: "phone", check: (v) => !v.trim() || phoneOk(v) },
+        { name: "interest", check: (v) => v.trim().length > 0 },
+        { name: "consent", check: (_, el) => !!el && el.checked },
+      ];
+      for (const f of fields) {
+        const el = form.elements.namedItem(f.name) as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement | null;
+        if (!el) continue;
+        const value = (el as HTMLInputElement).type === "checkbox" ? "" : el.value;
+        const ok = f.check(value, el as HTMLInputElement);
+        setError(f.name, !ok);
+        if (!ok && !firstInvalid) firstInvalid = el;
+      }
+      return { valid: !firstInvalid, firstInvalid };
+    };
+
+    // Clear errors on input
+    form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("input, select, textarea").forEach((el) => {
+      el.addEventListener("input", () => {
+        const field = el.closest<HTMLDivElement>(".field");
+        if (field?.dataset.invalid === "true") field.dataset.invalid = "false";
+      });
+      el.addEventListener("change", () => {
+        const field = el.closest<HTMLDivElement>(".field");
+        if (field?.dataset.invalid === "true") field.dataset.invalid = "false";
+      });
+    });
+
+    const setStatus = (state: "" | "success" | "error", message = "") => {
+      if (!statusEl) return;
+      statusEl.dataset.state = state;
+      statusEl.textContent = message;
+    };
+
+    const FALLBACK_EMAIL = (form.dataset.fallbackEmail || "").trim();
+
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      setStatus("");
+      const { valid, firstInvalid } = validate();
+      if (!valid) {
+        firstInvalid?.focus();
+        firstInvalid?.scrollIntoView({ block: "center", behavior: "smooth" });
+        return;
+      }
+
+      const data = new FormData(form);
+      // Drop honeypot — if filled, silently "succeed"
+      if ((data.get("_gotcha") as string | null)?.trim()) {
+        setStatus("success", "Thanks — we'll be in touch soon.");
+        form.reset();
+        return;
+      }
+
+      const endpoint = form.action;
+      const isPlaceholder = /REPLACE_WITH_YOUR_FORM_ID/.test(endpoint);
+
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.textContent = form.dataset.pendingText || "Sending…";
+      }
+
+      try {
+        if (isPlaceholder) {
+          // Form service not configured yet — open user's email client with the enquiry pre-filled.
+          if (FALLBACK_EMAIL) {
+            const lines = [
+              `Name: ${data.get("name") || ""}`,
+              `Email: ${data.get("email") || ""}`,
+              `Phone / WhatsApp: ${data.get("phone") || "—"}`,
+              `Interest: ${data.get("interest") || ""}`,
+              "",
+              "Message:",
+              `${data.get("message") || "—"}`,
+            ];
+            const body = encodeURIComponent(lines.join("\n"));
+            const subject = encodeURIComponent("Enquiry — Pleasant Personality Academy");
+            window.location.href = `mailto:${FALLBACK_EMAIL}?subject=${subject}&body=${body}`;
+            setStatus(
+              "success",
+              "Opening your email app to send the enquiry. If nothing happens, please email us directly."
+            );
+          } else {
+            setStatus(
+              "error",
+              "The enquiry form isn't configured yet. Please email us directly using the address below."
+            );
+          }
+          return;
+        }
+
+        const res = await fetch(endpoint, {
+          method: "POST",
+          body: data,
+          headers: { Accept: "application/json" },
+        });
+        if (res.ok) {
+          setStatus("success", "Thanks — your enquiry is in. We'll be in touch within 1–2 working days.");
+          form.reset();
+          statusEl?.focus();
+        } else {
+          const body = await res.json().catch(() => ({}));
+          const msg = body?.errors?.[0]?.message || body?.message ||
+            `Sorry, something went wrong (HTTP ${res.status}). Please try emailing us directly.`;
+          setStatus("error", msg);
+        }
+      } catch (err) {
+        console.error(err);
+        setStatus(
+          "error",
+          "Sorry — we couldn't send your enquiry just now. Please try again, or email us directly."
+        );
+      } finally {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = originalBtnHTML;
+        }
+      }
+    });
+
+    // Pre-fill the Interest dropdown if URL hash carries ?interest=…
+    const params = new URLSearchParams(window.location.hash.split("?")[1] || window.location.search);
+    const interest = params.get("interest");
+    if (interest) {
+      const select = form.elements.namedItem("interest") as HTMLSelectElement | null;
+      if (select) {
+        const match = Array.from(select.options).find((o) => o.value === interest);
+        if (match) select.value = interest;
+      }
+    }
+  }
+</script>

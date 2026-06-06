@@ -1,0 +1,73 @@
+---
+import BaseLayout from "~/layouts/BaseLayout.astro";
+import Header from "~/components/Header.astro";
+import Hero from "~/components/Hero.astro";
+import About from "~/components/About.astro";
+import Services from "~/components/Services.astro";
+import Courses from "~/components/Courses.astro";
+import Team from "~/components/Team.astro";
+import Events from "~/components/Events.astro";
+import Gallery from "~/components/Gallery.astro";
+import Testimonials from "~/components/Testimonials.astro";
+import Media from "~/components/Media.astro";
+import EnquiryForm from "~/components/EnquiryForm.astro";
+import Footer from "~/components/Footer.astro";
+import WhatsAppButton from "~/components/WhatsAppButton.astro";
+
+import site from "~/data/site.json";
+
+const title = `${site.brand} — Personality Development with Manisha Yadav`;
+const description = `Personality development, communication and confidence coaching for students, professionals and homemakers. Workshops, 1:1 coaching and corporate training by ${site.coach}.`;
+
+const schema = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: site.brand,
+    url: Astro.site?.toString(),
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    name: site.coach,
+    jobTitle: "Personality Development Coach",
+    affiliation: { "@type": "Organization", name: site.brand },
+    url: Astro.site?.toString(),
+    sameAs: [site.socials.linkedin, site.socials.instagram, site.socials.youtube],
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    name: site.brand,
+    description,
+    image: new URL("/og.png", Astro.site ?? "https://pleasantpersonalityacademy.com").toString(),
+    email: site.contact.email,
+    telephone: site.contact.whatsapp,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: site.contact.city,
+      addressCountry: "IN",
+    },
+    sameAs: [site.socials.linkedin, site.socials.instagram, site.socials.youtube],
+    url: Astro.site?.toString(),
+  },
+];
+---
+
+<BaseLayout title={title} description={description} path="/" schema={schema}>
+  <Header />
+  <main id="main">
+    <Hero />
+    <About />
+    <Services />
+    <Courses />
+    <Team />
+    <Events />
+    <Gallery />
+    <Testimonials />
+    <Media />
+    <EnquiryForm />
+  </main>
+  <Footer />
+  <WhatsAppButton />
+</BaseLayout>

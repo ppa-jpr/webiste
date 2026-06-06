@@ -1,0 +1,53 @@
+---
+import site from "~/data/site.json";
+import Icon from "./Icon.astro";
+
+const number = site.contact.whatsapp.replace(/[^0-9]/g, "");
+const message = encodeURIComponent("Hi! I'd love to learn more about your coaching at Pleasant Personality Academy.");
+---
+
+<a
+  class="wa-fab"
+  href={`https://wa.me/${number}?text=${message}`}
+  target="_blank"
+  rel="noopener"
+  aria-label="Chat with us on WhatsApp"
+>
+  <Icon name="whatsapp" size={28} />
+  <span class="wa-fab__pulse" aria-hidden="true"></span>
+</a>
+
+<style>
+  .wa-fab {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 90;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: #25D366;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 30px -8px rgba(37, 211, 102, 0.6), 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: transform .2s var(--ease);
+  }
+  .wa-fab:hover { transform: translateY(-2px); color: #fff; }
+  .wa-fab__pulse {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55);
+    animation: wa-pulse 2.2s var(--ease) infinite;
+  }
+  @keyframes wa-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.55); }
+    70% { box-shadow: 0 0 0 18px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wa-fab__pulse { animation: none; }
+  }
+</style>

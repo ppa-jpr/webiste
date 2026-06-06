@@ -1,0 +1,285 @@
+---
+import site from "~/data/site.json";
+import gallery from "~/data/gallery.json";
+import Icon from "./Icon.astro";
+
+const waLink = `https://wa.me/${site.contact.whatsapp.replace(/[^0-9]/g, "")}`;
+
+const benefits = [
+  "A personalised plan built around your goals",
+  "Online or in-person — in Hindi & English",
+  "No pressure, no obligation — just clarity",
+];
+---
+
+<section class="hero" id="top">
+  <div class="hero__bg" aria-hidden="true">
+    {gallery.map((g, i) => (
+      <div
+        class="hero__bg-slide"
+        style={`background-image:url('${g.image}');animation-delay:${i * (18 / gallery.length)}s`}
+      ></div>
+    ))}
+  </div>
+
+  <div class="container hero__inner">
+    <div class="hero__copy reveal">
+      <span class="hero__eyebrow">Pleasant Personality Academy</span>
+      <h1>
+        Become the most <span class="hero__highlight">confident</span>,
+        pleasant version of yourself.
+      </h1>
+      <p class="hero__lead">{site.subTagline}</p>
+
+      <ul class="hero__stats" aria-label="Academy stats">
+        {site.stats.map((s) => (
+          <li>
+            <strong>{s.value}</strong>
+            <span>{s.label}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <aside class="hero__action reveal" aria-label="Book a free consultation">
+      <span class="hero__action-tag">
+        <Icon name="spark" size={15} /> Free consultation
+      </span>
+      <h2>Book your free 20-minute consultation</h2>
+      <p class="hero__action-sub">
+        A quick, friendly call to understand where you are and map your next step.
+      </p>
+      <ul class="hero__action-list">
+        {benefits.map((b) => (
+          <li><Icon name="check" size={16} /> {b}</li>
+        ))}
+      </ul>
+      <a class="btn btn--accent hero__action-cta" href="#enquire">
+        Book my free consultation
+        <Icon name="arrow-right" size={18} />
+      </a>
+      <a class="hero__action-wa" href={waLink} target="_blank" rel="noopener">
+        <Icon name="whatsapp" size={18} /> Or chat with us on WhatsApp
+      </a>
+      <p class="hero__action-note">Typically replies within 10 hours.</p>
+    </aside>
+  </div>
+
+  <div class="hero__blob hero__blob--1" aria-hidden="true"></div>
+  <div class="hero__blob hero__blob--2" aria-hidden="true"></div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(3rem, 6vw, 5rem) clamp(4rem, 8vw, 6.5rem);
+    background: linear-gradient(180deg, var(--color-cream) 0%, var(--color-cream-2) 100%);
+  }
+
+  /* Desktop-only rotating photo background for the first fold. */
+  .hero__bg { display: none; }
+  .hero__bg-slide {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: heroBgFade 18s infinite;
+    will-change: opacity;
+  }
+  @keyframes heroBgFade {
+    0%, 38%, 100% { opacity: 0; }
+    5%, 33% { opacity: 1; }
+  }
+
+  .hero__inner {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(2rem, 5vw, 3.5rem);
+    align-items: stretch;
+  }
+  .hero__eyebrow {
+    display: inline-block;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: .82rem;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--color-accent-700);
+    background: rgba(233, 180, 76, 0.14);
+    padding: .35rem .8rem;
+    border-radius: 999px;
+    margin-bottom: 1.25rem;
+  }
+  .hero h1 { margin-bottom: 1.25rem; }
+  .hero__highlight {
+    color: var(--color-coral);
+    position: relative;
+    white-space: nowrap;
+  }
+  .hero__highlight::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: 4px;
+    height: 8px;
+    background: rgba(233, 180, 76, 0.4);
+    z-index: -1;
+    border-radius: 4px;
+  }
+  .hero__lead {
+    font-size: 1.12rem;
+    color: var(--color-text-muted);
+    max-width: 52ch;
+    margin-bottom: 2rem;
+  }
+  .hero__stats {
+    list-style: none;
+    padding: 1.5rem 0 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem 1.5rem;
+    border-top: 1px solid rgba(15, 76, 92, 0.12);
+  }
+  .hero__stats li { display: flex; flex-direction: column; }
+  .hero__stats strong {
+    font-family: var(--font-heading);
+    font-size: clamp(1.3rem, 2.2vw, 1.6rem);
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+  .hero__stats span { font-size: .85rem; color: var(--color-text-muted); }
+
+  /* Actionable lead-capture card */
+  .hero__action {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2rem);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid rgba(15, 76, 92, 0.06);
+    display: flex;
+    flex-direction: column;
+    align-self: start;
+  }
+  .hero__action-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: .4rem;
+    align-self: flex-start;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: .78rem;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--color-accent-700);
+    background: rgba(233, 180, 76, 0.14);
+    padding: .35rem .7rem;
+    border-radius: 999px;
+    margin-bottom: 1rem;
+  }
+  .hero__action-tag :global(svg) { color: var(--color-accent); }
+  .hero__action h2 {
+    font-size: clamp(1.3rem, 2.4vw, 1.55rem);
+    color: var(--color-primary);
+    margin-bottom: .5rem;
+  }
+  .hero__action-sub {
+    color: var(--color-text-muted);
+    font-size: .95rem;
+    margin-bottom: 1.25rem;
+  }
+  .hero__action-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: .65rem;
+  }
+  .hero__action-list li {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: .6rem;
+    align-items: start;
+    font-size: .95rem;
+    color: var(--color-text);
+  }
+  .hero__action-list :global(svg) { color: var(--color-accent-700); margin-top: 3px; }
+  .hero__action-cta { width: 100%; justify-content: center; }
+  .hero__action-wa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+    margin-top: .85rem;
+    font-weight: 600;
+    font-size: .92rem;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+  }
+  .hero__action-wa:hover { color: var(--color-coral); }
+  .hero__action-wa :global(svg) { color: #25D366; }
+  .hero__action-note {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: .8rem;
+    margin: .75rem 0 0;
+  }
+
+  .hero__blob {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    opacity: .35;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .hero__blob--1 {
+    width: 360px; height: 360px;
+    background: var(--color-accent);
+    top: -120px; right: -120px;
+  }
+  .hero__blob--2 {
+    width: 320px; height: 320px;
+    background: var(--color-primary);
+    bottom: -160px; left: -120px;
+    opacity: .15;
+  }
+  .hero__inner > * { position: relative; z-index: 1; }
+
+  @media (min-width: 900px) {
+    .hero__inner {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      align-items: center;
+    }
+    .hero__stats { grid-template-columns: repeat(4, 1fr); }
+
+    .hero__bg {
+      display: block;
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+    }
+    /* Scrim weighted to the left, where the headline sits, so copy stays crisp. */
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      background: linear-gradient(
+        90deg,
+        rgba(251, 243, 230, 0.96) 0%,
+        rgba(251, 243, 230, 0.86) 42%,
+        rgba(251, 243, 230, 0.62) 100%
+      );
+      pointer-events: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero__bg-slide { animation: none; }
+    .hero__bg-slide:first-child { opacity: 1; }
+  }
+</style>

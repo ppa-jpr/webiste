@@ -1,0 +1,16 @@
+[
+  {
+    "id": "s1",
+    "name": "Shalini's story",
+    "before": "A 7-year career break, two kids, and a quiet fear that the world had moved on.",
+    "after": "Three months of weekly coaching, one bootcamp, and a job offer at a company she actually wanted.",
+    "quote": "I wasn't just learning soft skills — I was learning to like the person I was becoming again."
+  },
+  {
+    "id": "s2",
+    "name": "Vivek's story",
+    "before": "Top of his class on paper, frozen in every interview, convinced he just 'wasn't a people person'.",
+    "after": "Now leads campus events, presents to 200+ students, and got 4 offers in his placement season.",
+    "quote": "I didn't change my personality. I just stopped hiding it."
+  }
+]

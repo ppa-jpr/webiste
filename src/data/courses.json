@@ -1,0 +1,66 @@
+[
+  {
+    "id": "personality-development-mastery",
+    "icon": "spark",
+    "title": "Personality Development Mastery",
+    "duration": "6 weeks",
+    "description": "Build confidence, improve communication, and refine your body language. This course will help you present the best version of yourself, personally and professionally.",
+    "interest": "1:1 Coaching"
+  },
+  {
+    "id": "interview-coaching",
+    "icon": "briefcase",
+    "title": "Interview Coaching & Career Success",
+    "duration": "4 weeks",
+    "description": "Learn how to ace interviews with confidence. From mastering answers to tricky questions to perfecting your first impression, we cover it all.",
+    "interest": "1:1 Coaching"
+  },
+  {
+    "id": "public-speaking",
+    "icon": "mic",
+    "title": "Public Speaking & Communication Skills",
+    "duration": "8 weeks",
+    "description": "Overcome stage fright and speak with confidence. This course is perfect for professionals, students, and anyone looking to improve their communication skills.",
+    "interest": "Workshop"
+  },
+  {
+    "id": "pageant-modeling",
+    "icon": "shine",
+    "title": "Pageant & Modeling Training",
+    "duration": "10 weeks",
+    "description": "Designed for aspiring pageant contestants and models. Learn how to walk the ramp, pose for the camera, and shine in front of the judges.",
+    "interest": "1:1 Coaching"
+  },
+  {
+    "id": "leadership-team-building",
+    "icon": "people",
+    "title": "Leadership & Team Building",
+    "duration": "5 weeks",
+    "description": "Ideal for managers, team leads, and future leaders. Learn how to inspire and lead with confidence, create high-performing teams, and master the art of delegation.",
+    "interest": "Corporate Training"
+  },
+  {
+    "id": "english-proficiency",
+    "icon": "grad",
+    "title": "English Language Proficiency",
+    "duration": "12 weeks",
+    "description": "From basic grammar to fluent conversations, this course is perfect for those looking to enhance their English language skills for both personal and professional growth.",
+    "interest": "Student Program"
+  },
+  {
+    "id": "etiquette-grooming",
+    "icon": "shine",
+    "title": "Etiquette & Grooming",
+    "duration": "3 weeks",
+    "description": "Refine your appearance and social etiquette. Learn the art of dining, dressing for success, and maintaining a polished presence.",
+    "interest": "1:1 Coaching"
+  },
+  {
+    "id": "stage-fear-kids",
+    "icon": "mic",
+    "title": "Stage Fear & Mic Fear Training for Kids",
+    "duration": "4 weeks",
+    "description": "Help your child overcome stage and mic fear with practical techniques. This course is designed to build confidence in young children by improving their public speaking skills in a fun and supportive environment.",
+    "interest": "Student Program"
+  }
+]

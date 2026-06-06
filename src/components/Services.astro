@@ -1,0 +1,82 @@
+---
+import services from "~/data/services.json";
+import Icon from "./Icon.astro";
+---
+
+<section class="section section--alt" id="services">
+  <div class="container">
+    <div class="reveal">
+      <span class="section-eyebrow">Services</span>
+      <h2 class="section-title">Ways we can work together</h2>
+      <p class="section-intro">
+        Whether you want focused one-on-one coaching, a group workshop, or a team training for
+        your company — there's a programme designed around your stage of life and your goals.
+      </p>
+    </div>
+
+    <div class="grid grid--3">
+      {services.map((s) => (
+        <article class="card service-card reveal">
+          <span class="service-card__icon" aria-hidden="true">
+            <Icon name={s.icon} size={26} />
+          </span>
+          <h3>{s.title}</h3>
+          <p>{s.description}</p>
+          <a
+            class="service-card__cta"
+            href={`#enquire?interest=${encodeURIComponent(s.interest)}`}
+            data-interest={s.interest}
+          >
+            Enquire <Icon name="arrow-right" size={16} />
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .service-card {
+    display: flex;
+    flex-direction: column;
+    gap: .75rem;
+  }
+  .service-card__icon {
+    width: 52px; height: 52px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(233, 180, 76, 0.18), rgba(231, 111, 81, 0.12));
+    color: var(--color-primary);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .25rem;
+  }
+  .service-card h3 { font-size: 1.15rem; color: var(--color-primary); }
+  .service-card p { color: var(--color-text-muted); margin: 0; }
+  .service-card__cta {
+    margin-top: auto;
+    padding-top: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: .35rem;
+    font-weight: 600;
+    color: var(--color-primary);
+    font-family: var(--font-heading);
+  }
+  .service-card__cta:hover { color: var(--color-coral); }
+</style>
+
+<script>
+  // Pre-select interest in the enquiry form when a service "Enquire" link is clicked.
+  document.querySelectorAll<HTMLAnchorElement>(".service-card__cta").forEach((a) => {
+    a.addEventListener("click", (e) => {
+      const interest = a.dataset.interest;
+      if (!interest) return;
+      const select = document.querySelector<HTMLSelectElement>("#interest");
+      if (select) {
+        const option = Array.from(select.options).find((o) => o.value === interest);
+        if (option) select.value = interest;
+      }
+    });
+  });
+</script>
